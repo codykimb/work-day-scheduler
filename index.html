@@ -18,22 +18,230 @@
       href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="style.css" />
+    <link rel="stylesheet" href="assets/style.css" />
     <title>Work Day Scheduler</title>
   </head>
 
   <body>
     <header class="jumbotron">
       <h1 class="display-3">Work Day Scheduler</h1>
-      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <p class="lead text-muted">A simple calendar app for scheduling your work day</p>
       <p id="currentDay" class="lead"></p>
     </header>
     <div class="container">
-      <!-- Timeblocks go here -->
+        <div class="row border">
+        
+          <div class="col-2" >
+            9am
+          </div>
+
+          <div class="col-8 content" id="9">
+            <p>                                       </p>
+          </div>
+
+          <div class="col-2">
+            <!-- <span class="oi oi-lock-locked"></span> -->
+            Lock
+          </div>
+        
+        </div>
+
+        <div class="row border">
+        
+          <div class="col-2">
+            10am
+          </div>
+
+          <div class="col-8 content" id="10">
+
+          </div>
+
+          <div class="col-2">
+            <!-- <span class="oi oi-lock-locked"></span> -->
+            Lock
+          </div>
+        
+        </div>
+
+        <div class="row border">
+        
+          <div class="col-2">
+            11am
+          </div>
+
+          <div class="col-8 content" id="11">
+
+          </div>
+
+          <div class="col-2">
+            <!-- <span class="oi oi-lock-locked"></span> -->
+            Lock
+          </div>
+        
+        </div>
+
+        <div class="row border">
+        
+          <div class="col-2">
+            12pm
+          </div>
+
+          <div class="col-8 content" id="12">
+
+          </div>
+
+          <div class="col-2">
+            <!-- <span class="oi oi-lock-locked"></span> -->
+            Lock
+          </div>
+        
+        </div>
+
+        <div class="row border">
+        
+          <div class="col-2">
+            1pm
+          </div>
+
+          <div class="col-8 content" id="13">
+
+          </div>
+
+          <div class="col-2">
+            <!-- <span class="oi oi-lock-locked"></span> -->
+            Lock
+          </div>
+        
+        </div>
+
+        <div class="row border">
+        
+          <div class="col-2">
+            2pm
+          </div>
+
+          <div class="col-8 content" id="14">
+
+          </div>
+
+          <div class="col-2">
+            <!-- <span class="oi oi-lock-locked"></span> -->
+            Lock
+          </div>
+        
+        </div>
+
+        <div class="row border">
+        
+          <div class="col-2">
+            3pm
+          </div>
+
+          <div class="col-8 content" id="15">
+
+          </div>
+
+          <div class="col-2">
+            <!-- <span class="oi oi-lock-locked"></span> -->
+            Lock
+          </div>
+        
+        </div>
+
+        <div class="row border">
+        
+          <div class="col-2 fourPM">
+            4pm
+          </div>
+
+          <div class="col-8 content" id="16">
+
+          </div>
+
+          <div class="col-2">
+            <!-- <span class="oi oi-lock-locked"></span> -->
+            Lock
+          </div>
+        
+        </div>
+
+        <div class="row border">
+        
+          <div class="col-2">
+            5pm
+          </div>
+
+          <div class="col-8 content" id="17">
+
+          </div>
+
+          <div class="col-2">
+            <!-- <span class="oi oi-lock-locked"></span> -->
+            Lock
+          </div>
+        
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
-    <script>src=""</script>
+    
+    <script type="text/javascript">
+        var currentDay = moment()
+        console.log(currentDay.format("[Today is ] dddd, MMMM Do YYYY"))
+
+        $("#currentDay").append(currentDay.format("[Today is ] dddd, MMMM Do YYYY"))
+
+        var time = currentDay.format("H");
+        console.log("time = "+ time);
+
+        taskTime = $(".content").attr("id");
+
+        console.log("taskTime = " + taskTime);
+        
+        // if the id of the div is < time change the background color
+       function colorChange(){
+
+          if (taskTime < time) {
+
+          console.log("it worked");
+          $(".content").addClass("bg-secondary");
+
+          }
+        };
+
+      colorChange();
+
+      //when clicked, p. turns into a <textarea>
+      $(".content").on("click", "p", function() {
+        var text = $(this).text().trim();
+          console.log(text);
+
+        var textInput = $("<textarea>")
+          .addClass("form-control")
+          .val(text);
+        
+        $(this).replaceWith(textInput);
+
+        textInput.trigger("focus");
+      });
+
+      $(".content").on("blur", "textarea", function() {
+        var text = $(this).val().trim();
+
+        // recreate p element
+        var taskP = $("<p>").text(text)
+        .removeClass("form-control");
+
+        // replace textarea with p element
+        $(this).replaceWith(taskP);
+
+      });
+        
+        
+
+    
+    </script>
+
   </body>
 </html>
