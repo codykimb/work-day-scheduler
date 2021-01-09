@@ -1,12 +1,28 @@
 # Work Day Scheduler Starter Code
+LINK TO DEPLOYED APPLICATION:  
+https://codykimb.github.io/work-day-scheduler/
 
-User Story  
+GIT HUB REPOSITORY:  
+https://github.com/codykimb/work-day-scheduler
+  
+    
+DESCRIPTION:  
+This is work day scheduler application! Each row is a time block  
+representing the hours between 9am - 9pm. The middle columns are  
+textareas that can be edited. Upon editing, The respective lock  will open showing the user which areas are unsaved. Once the user  
+click the description in the textarea is saved to localStorage.  
+  
+SCREENSHOT:  
+![work-day-1](https://user-images.githubusercontent.com/72325495/104110209-10313180-529b-11eb-968b-48a1be95f8a6.png)
+![work-day-2](https://user-images.githubusercontent.com/72325495/104110214-132c2200-529b-11eb-85a5-933d8efaa7ea.png)
+  
+USER STORY:  
   
 AS AN employee with a busy schedule  
 I WANT to add important events to a daily planner  
 SO THAT I can manage my time effectively  
   
-Acceptance Criteria  
+ACCEPTANCE CRITERIA:
   
 GIVEN I am using a daily planner to create a schedule  
 WHEN I open the planner  
