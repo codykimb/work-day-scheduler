@@ -35,52 +35,42 @@ $(document).ready(() => {
         }
     };
 
-  //when clicked, p. turns into a <textarea>
-  $(".time-block").on("click", "p", function() {
-    var text = $(this).text().trim();
-    //   console.log(text);
-
-    var textInput = $("<textarea>")
-      .addClass("form-control")
-      .val(text);
+  //when text area clicked, lock turns to unlocked icon
+  $(".time-block").on("click", "textarea", function() {
     
-    $(this).replaceWith(textInput);
+    $(this).siblings(".saveBtn").children("i").addClass("oi-lock-unlocked");
+    $(this).siblings(".saveBtn").children("i").removeClass("oi-lock-locked");
+  
+    });
 
-    textInput.trigger("focus");
+  $(".saveBtn").on("click", function() {
+    
+    var text = $(this).siblings(".description").val();
+    var timeIndex = $(this).parent().attr("id");
+    
+    console.log("text = " + text + " index = " + timeIndex) 
 
-    // change icon to open lock
-    $("#lock").addClass("oi-lock-unlocked");
-    $("#lock").removeClass("oi-lock-locked");
-  });
+    // change lock to locked
+    $(this).children("i").addClass("oi-lock-locked");
+    $(this).children("i").removeClass("oi-lock-unlocked");
 
-  $(".time-block").on("click", ".saveBtn", function() {
-    var text = $(this).closest(".time-block").find("description").find("p").text();
-    console.log(text)
-
-    var blankText = "                           ";
-
-    if (!text) {
-      
-      // recreate p element
-      var taskP = $("<p>").text(blankText)
-      .removeClass("form-control");
-
-      // replace textarea with p element
-      $(this).replaceWith(taskP);
-
-      //change icon to open lock
-      $("#lock").removeClass("oi-lock-unlocked");
-      $("#lock").addClass("oi-lock-locked");
-
-    }
-    else {
-      // recreate p element
-      var taskP = $("<p>").text(text)
-        .removeClass("form-control");
-
-      // replace textarea with p element
-      $(this).replaceWith(taskP);
-    }
+    localStorage.setItem(timeIndex, text);
     
     });
+
+    //get items from storage
+    $("#hour9 .description").val(localStorage.getItem("hour9"));
+    $("#hour10 .description").val(localStorage.getItem("hour10"));
+    $("#hour11 .description").val(localStorage.getItem("hour11"));
+    $("#hour12 .description").val(localStorage.getItem("hour12"));
+    $("#hour13 .description").val(localStorage.getItem("hour13"));
+    $("#hour14 .description").val(localStorage.getItem("hour14"));
+    $("#hour15 .description").val(localStorage.getItem("hour15"));
+    $("#hour16 .description").val(localStorage.getItem("hour16"));
+    $("#hour17 .description").val(localStorage.getItem("hour17"));
+    $("#hour18 .description").val(localStorage.getItem("hour18"));
+    $("#hour19 .description").val(localStorage.getItem("hour19"));
+    $("#hour20 .description").val(localStorage.getItem("hour20"));
+
+
 })
