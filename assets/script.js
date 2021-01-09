@@ -1,11 +1,13 @@
 // dont run javascript until webpage loads
 $(document).ready(() => {
     
-    //log date at the top 
+    //log date and time
     var currentDay = moment()
     console.log(currentDay.format("[Today is ] dddd, MMMM Do YYYY"))
+    console.log(currentDay.format("[The time is ] LT"))
 
-    $("#currentDay").append(currentDay.format("[Today is ] dddd, MMMM Do YYYY"))
+    //append date and tiem to jumbotron
+    $("#currentDay").append(currentDay.format("[Today is ] dddd, MMMM Do YYYY. [The time is ] LT.")) 
 
     var timeNow = currentDay.format("H");
     // console.log("time = "+ time);
