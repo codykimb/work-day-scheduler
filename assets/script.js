@@ -7,36 +7,36 @@ $(document).ready(() => {
 
     $("#currentDay").append(currentDay.format("[Today is ] dddd, MMMM Do YYYY"))
 
-    var time = currentDay.format("H");
+    var timeNow = currentDay.format("H");
     // console.log("time = "+ time);
 
-    var descriptionArray = $(".description");
+    var timeArray = $(".time-block");
 
-    for (i = 0; i < descriptionArray.length; i++) {
+    for (i = 0; i < timeArray.length; i++) {
 
-        taskTime = $(descriptionArray[i]).attr("id");
+        taskTime = $(timeArray[i]).attr("id");
         // console.log("taskTime = " + taskTime);
 
-        var timeBetween = moment(taskTime, "hours").diff(moment(time, "hours"), "hours");
+        var timeBetween = moment(taskTime, "hours").diff(moment(timeNow, "hours"), "hours");
         // console.log(timeBetween)
 
         if (timeBetween < 0) {
-            $(descriptionArray[i]).addClass("past");
-            $(descriptionArray[i]).css("color", "black");
+            $(timeArray[i]).addClass("past");
+            $(timeArray[i]).css("color", "black");
 
         }
         else if (timeBetween === 0) {
-            $(descriptionArray[i]).addClass("present");
-            $(descriptionArray[i]).css("color", "white");
+            $(timeArray[i]).addClass("present");
+            $(timeArray[i]).css("color", "white");
         }
         else {
-            $(descriptionArray[i]).addClass("future");
-            $(descriptionArray[i]).css("color", "white");
+            $(timeArray[i]).addClass("future");
+            $(timeArray[i]).css("color", "white");
         }
     };
 
   //when clicked, p. turns into a <textarea>
-  $(".description").on("click", "p", function() {
+  $(".time-block").on("click", "p", function() {
     var text = $(this).text().trim();
     //   console.log(text);
 
@@ -53,8 +53,9 @@ $(document).ready(() => {
     $("#lock").removeClass("oi-lock-locked");
   });
 
-  $(".description").on("blur", "textarea", function() {
-    var text = $(this).val().trim();
+  $(".time-block").on("click", ".saveBtn", function() {
+    var text = $(this).closest(".time-block").find("description").find("p").text();
+    console.log(text)
 
     var blankText = "                           ";
 
